@@ -18,7 +18,7 @@ import {
 
 export const app: Express = express();
 const allowedOrigins = [
-  'https://book-reviews-frontend.vercel.app/',
+  'https://book-reviews-frontend.vercel.app',
   'https://book-reviews-mohammedraqeebb.vercel.app',
   'https://book-reviews-rcaaejeq3-mohammedraqeebb.vercel.app',
 ];
