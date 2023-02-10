@@ -17,7 +17,10 @@ import {
 } from './routes';
 
 export const app: Express = express();
-const allowedOrigins = ['http://localhost:3000'];
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://book-reviews-gly81ncgs-mohammedraqeebb.vercel.app',
+];
 // app.use(function (req, res, next) {
 //   res.header('Access-Control-Allow-Origin', '*');
 //   res.header('Access-Control-Allow-Credentials', 'true');
@@ -51,7 +54,9 @@ app.use(cors(corsOptions));
 
 app.use(bodyParser.json());
 
-app.use(cookieSession({ secure: true, signed: false }));
+app.use(
+  cookieSession({ secure: process.env.NODE_ENV !== 'test', signed: false })
+);
 
 app.use(currentUser);
 
