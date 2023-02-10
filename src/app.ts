@@ -19,7 +19,8 @@ import {
 export const app: Express = express();
 const allowedOrigins = [
   'http://localhost:3000',
-  'https://book-reviews-gly81ncgs-mohammedraqeebb.vercel.app',
+  'https://book-reviews-taupe.vercel.app',
+  'https://book-reviews-mohammedraqeebb.vercel.app',
 ];
 // app.use(function (req, res, next) {
 //   res.header('Access-Control-Allow-Origin', '*');
