@@ -65,7 +65,11 @@ app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
 app.use(
-  cookieSession({ secure: process.env.NODE_ENV !== 'test', signed: false })
+  cookieSession({
+    secure: process.env.NODE_ENV !== 'test',
+    signed: false,
+    sameSite: 'none',
+  })
 );
 
 app.use(currentUser);
