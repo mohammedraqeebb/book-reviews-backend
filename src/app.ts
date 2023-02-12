@@ -36,6 +36,10 @@ app.use(function (req, res, next) {
     'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept'
   );
   res.header('Access-Control-Max-Age', '10000');
+  if (req.method == 'OPTIONS') {
+    res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
+    return res.status(200).end();
+  }
   console.log(req.headers.origin);
   next();
 });
