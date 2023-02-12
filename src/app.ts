@@ -23,22 +23,22 @@ const allowedOrigins = [
   'https://book-reviews-rcaaejeq3-mohammedraqeebb.vercel.app',
 ];
 app.set('trust proxy', 1);
-// app.use(function (req, res, next) {
-//   res.header('Access-Control-Allow-Origin', req.headers.origin);
-//   res.header('Access-Control-Allow-Credentials', 'true');
-//   res.header(
-//     'Access-Control-Allow-Methods',
-//     'GET,PUT,POST,DELETE,UPDATE,OPTIONS'
-//   );
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', req.headers.origin);
+  res.header('Access-Control-Allow-Credentials', 'true');
+  res.header(
+    'Access-Control-Allow-Methods',
+    'GET,PUT,POST,DELETE,UPDATE,OPTIONS'
+  );
 
-//   res.header(
-//     'Access-Control-Allow-Headers',
-//     'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept'
-//   );
-//   res.header('Access-Control-Max-Age', '10000');
-//   console.log(req.headers.origin);
-//   next();
-// });
+  res.header(
+    'Access-Control-Allow-Headers',
+    'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept'
+  );
+  res.header('Access-Control-Max-Age', '10000');
+  console.log(req.headers.origin);
+  next();
+});
 
 const corsOptions = {
   origin: (origin: string, callback: any) => {
