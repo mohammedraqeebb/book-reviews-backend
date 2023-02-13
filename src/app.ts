@@ -17,11 +17,7 @@ import {
 } from './routes';
 
 export const app: Express = express();
-const allowedOrigins = [
-  'https://book-reviews-frontend.vercel.app',
-  'https://book-reviews-mohammedraqeebb.vercel.app',
-  'https://book-reviews-rcaaejeq3-mohammedraqeebb.vercel.app',
-];
+
 app.set('trust proxy', 1);
 app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', req.headers.origin);
@@ -35,39 +31,29 @@ app.use(function (req, res, next) {
     'Access-Control-Allow-Headers',
     'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept'
   );
-  res.header('Access-Control-Max-Age', '10000');
-  if (req.method == 'OPTIONS') {
+
+  if (req.method === 'OPTIONS') {
     res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
-    return res.status(200).end();
+    res.setHeader('Allow', 'POST');
+    res.status(200).end();
+    return;
   }
   console.log(req.headers.origin);
   next();
 });
-
+const allowedOrigins = [
+  'https://book-reviews-frontend.vercel.app',
+  'https://book-reviews-mohammedraqeebb.vercel.app',
+  'https://book-reviews-rcaaejeq3-mohammedraqeebb.vercel.app',
+  'https://book-reviews-frontend-cde8158t6-mohammedraqeebb.vercel.app',
+];
 const corsOptions = {
-  origin: (origin: string, callback: any) => {
-    console.log(origin);
-    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-      console.log(origin, 'succesful');
-      callback(null, true);
-    } else {
-      console.log(origin, 'unsuccesful');
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
+  origin: allowedOrigins,
   credentials: true,
   optionsSuccessStatus: 200,
 };
 
 app.use(cors(corsOptions));
-
-// app.use(
-//   cors({
-//     origin: '*',
-//     credentials: true,
-//     optionsSuccessStatus: 200,
-//   })
-// );
 
 app.use(bodyParser.json());
 
@@ -76,6 +62,7 @@ app.use(
     secure: process.env.NODE_ENV !== 'test',
     signed: false,
     sameSite: 'none',
+    maxAge: 1000 * 60 * 60 * 24,
   })
 );
 
