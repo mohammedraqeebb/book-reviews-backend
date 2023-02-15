@@ -18,7 +18,7 @@ import {
 
 export const app: Express = express();
 
-app.set('trust proxy', 1);
+app.set('trust proxy', true);
 app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', req.headers.origin);
   res.header('Access-Control-Allow-Credentials', 'true');
@@ -39,27 +39,25 @@ app.use(function (req, res, next) {
     return;
   }
   console.log(req.headers.origin);
+
   next();
 });
 const allowedOrigins = [
   'https://book-reviews-frontend.vercel.app',
   'https://book-reviews-mohammedraqeebb.vercel.app',
-  'https://book-reviews-rcaaejeq3-mohammedraqeebb.vercel.app',
-  'https://book-reviews-frontend-cde8158t6-mohammedraqeebb.vercel.app',
+  'https://book-reviews-frontend-react.vercel.app',
 ];
+
 const corsOptions = {
   origin: allowedOrigins,
   credentials: true,
   optionsSuccessStatus: 200,
 };
-
 app.use(cors(corsOptions));
-
 app.use(bodyParser.json());
-
 app.use(
   cookieSession({
-    secure: process.env.NODE_ENV !== 'test',
+    secure: true,
     signed: false,
     sameSite: 'none',
     maxAge: 1000 * 60 * 60 * 24,

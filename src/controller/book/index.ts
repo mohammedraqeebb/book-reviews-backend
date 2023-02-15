@@ -7,3 +7,4 @@ export * from './likes';
 export * from './dislike';
 export * from './search';
 export * from './most-liked';
+export * from './most-viewed';

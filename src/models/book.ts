@@ -78,11 +78,13 @@ const bookSchema = new mongoose.Schema(
     views: {
       type: Number,
       default: 0,
+      index: true,
     },
     likes: [
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
+        index: true,
       },
     ],
     dislikes: [

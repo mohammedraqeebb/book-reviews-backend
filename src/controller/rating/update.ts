@@ -12,12 +12,6 @@ export const updateRating = async (req: Request, res: Response) => {
   const { bookid, ratingid } = req.params;
   const { rating: userRating } = req.body;
 
-  if (
-    !mongoose.Types.ObjectId.isValid(bookid) &&
-    !mongoose.Types.ObjectId.isValid(ratingid)
-  ) {
-    throw new BadRequestError('valid bookid is required');
-  }
   const existingBook = await Book.findById(bookid);
   if (!existingBook) {
     throw new NotFoundError('product not found');

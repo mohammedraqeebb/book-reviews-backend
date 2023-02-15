@@ -17,9 +17,10 @@ export const allRatings = async (req: Request, res: Response) => {
   }
 
   const bookRatings = await BookRatings.findById(bookid).populate('ratings');
+
   if (!bookRatings) {
-    return res.status(200).send({ bookRatings: [] });
+    return res.status(200).send({ ratings: [] });
   }
 
-  res.status(200).send({ bookRatings: bookRatings });
+  res.status(200).send({ ratings: bookRatings.ratings });
 };

@@ -28,7 +28,7 @@ export const createRating = async (req: Request, res: Response) => {
       ratings: [rating.id],
     });
     await newBookRatings.save();
-    return res.status(201).send({ bookRatings: newBookRatings });
+    return res.status(201).send({ rating: rating });
   } else if (bookRatings) {
     const userRatingFound = bookRatings.ratings.find(
       //@ts-ignore
@@ -42,5 +42,5 @@ export const createRating = async (req: Request, res: Response) => {
     await bookRatings.save();
   }
 
-  res.status(201).send({ bookRatings });
+  res.status(201).send({ rating });
 };

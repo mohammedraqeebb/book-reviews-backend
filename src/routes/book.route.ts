@@ -8,6 +8,7 @@ import {
   increaseView,
   dislikeOrRemoveDislike,
   searchBook,
+  mostViewed,
 } from '../controller/book';
 import { isValidObjectId, requireAuth, validateRequest } from '../middlewares';
 import { body, param } from 'express-validator';
@@ -175,3 +176,5 @@ bookRouter.post(
 );
 
 bookRouter.get('/likes/mostliked', mostLiked);
+
+bookRouter.get('/views/mostViewed', mostViewed);
