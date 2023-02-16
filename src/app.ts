@@ -28,29 +28,29 @@ export const app: Express = express();
 
 app.set('trust proxy', true);
 app.use(limiter);
-app.use(function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', req.headers.origin);
-  res.header('Access-Control-Allow-Credentials', 'true');
-  res.header(
-    'Access-Control-Allow-Methods',
-    'GET,PUT,POST,DELETE,UPDATE,OPTIONS'
-  );
+// app.use(function (req, res, next) {
+//   res.header('Access-Control-Allow-Origin', req.headers.origin);
+//   res.header('Access-Control-Allow-Credentials', 'true');
+//   res.header(
+//     'Access-Control-Allow-Methods',
+//     'GET,PUT,POST,DELETE,UPDATE,OPTIONS'
+//   );
 
-  res.header(
-    'Access-Control-Allow-Headers',
-    'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept'
-  );
+//   res.header(
+//     'Access-Control-Allow-Headers',
+//     'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept'
+//   );
 
-  if (req.method === 'OPTIONS') {
-    res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
-    res.setHeader('Allow', 'POST');
-    res.status(200).end();
-    return;
-  }
-  console.log(req.headers.origin);
+//   if (req.method === 'OPTIONS') {
+//     res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
+//     res.setHeader('Allow', 'POST');
+//     res.status(200).end();
+//     return;
+//   }
+//   console.log(req.headers.origin);
 
-  next();
-});
+//   next();
+// });
 const allowedOrigins = [
   'https://book-reviews-frontend.vercel.app',
   'https://book-reviews-mohammedraqeebb.vercel.app',
