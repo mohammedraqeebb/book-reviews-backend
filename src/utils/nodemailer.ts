@@ -27,9 +27,6 @@ export const sendMail = ({ to, otp }: SendMail) => {
   //@ts-ignore
   transporter.sendMail(options, function (err, info) {
     if (err) {
-      throw new BadRequestError(
-        'your email, was not sent,enter existing email'
-      );
     }
   });
   return;
