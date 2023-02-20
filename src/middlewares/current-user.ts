@@ -21,14 +21,13 @@ export const currentUser = (
   res: Response,
   next: NextFunction
 ) => {
-  if (!req.session || !req.session.jwt) {
+  const token = req.headers.authorization.replace('Bearer ', '');
+
+  if (!req.headers.authorization) {
     return next();
   }
   try {
-    const payload = jwt.verify(
-      req.session.jwt,
-      process.env.JWT_SECRET!
-    ) as UserPayload;
+    const payload = jwt.verify(token, process.env.JWT_SECRET!) as UserPayload;
 
     req.currentUser = payload;
   } catch (err) {}

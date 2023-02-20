@@ -23,5 +23,5 @@ export const signup = async (req: Request, res: Response) => {
     jwt: token,
   };
 
-  return res.status(201).send({ user });
+  return res.status(201).send({ user, token });
 };
