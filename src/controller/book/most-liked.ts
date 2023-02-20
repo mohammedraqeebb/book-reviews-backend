@@ -6,7 +6,6 @@ export const mostLiked = async (req: Request, res: Response) => {
   const topTenBooks = books
     .sort((a, b) => b.likes.length - a.likes.length)
     .slice(0, 10);
-  console.log('server hit');
 
   return res.status(200).send({ books: topTenBooks });
 };
