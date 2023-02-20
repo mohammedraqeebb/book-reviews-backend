@@ -21,9 +21,9 @@ export const currentUser = (
   res: Response,
   next: NextFunction
 ) => {
-  const token = req.headers.authorization.replace('Bearer ', '');
+  const token = req.headers?.authorization?.replace('Bearer ', '');
 
-  if (!req.headers.authorization) {
+  if (!token) {
     return next();
   }
   try {
